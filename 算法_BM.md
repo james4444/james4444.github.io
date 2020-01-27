@@ -82,4 +82,17 @@ public int bm(char[] a, int n, char[] b ,int m){
 
     return -1;
 }
+
+private int moveBYGS(int j, int m, char[] suffix, boolean[] prefix){
+    int k = m - 1 - j;
+
+    if(suffix[k] != -1) return j - suffix[k] + 1;
+
+    for(int r = j + 2; r < = m-1 ; ++r){
+        if(prefix[m-r] == ture) {
+            retrun r;
+        }
+    }
+    retrun m;
+}
 ```
