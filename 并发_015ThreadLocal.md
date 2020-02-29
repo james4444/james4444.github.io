@@ -1,0 +1,8 @@
+# 并发编程
+
+## ThreadLocal
+
+Thread内部类有一个私有属性threadLocals,其类型是ThreadLocalMap,ThreadLocalMap 的key是ThreadLocal.
+线程本地存储模式本质上是一种避免共享的方案，由于没有共享，自然也就没有并发问题。如果你需要在并发场景中使用一个不安全的工具类，最简单的方案就是避免共享。避免共享有两张方案，一种是将这个工具类作为局部变量使用，另外一种方案就是线程本地存储的模式。这两种方案，局部变量的缺点是在高并发的情况下，会频繁的创建对象，而线程本地存储方案，每个线程只需要创建一个工具类的实例，所以不存在频繁创建对象的情况。
+ThreadLocal其实是与线程绑定的一个变量，如果没有将ThreadLocal内的变量删除或替换，他的生命周期会和线程的生命周期相同，如果使用的是线程池，线程复用的情况下，可能导致数据错误和内存泄漏。
+Spring 用threadlocal来解决线程安全问题，通常只有无状态的bean才可以在多线程环境下共享，在spring中，绝大部分的bean都是可以声明为singleton的，就是因为spirng对一些bean,如RequestContextHolder、TransactionSychronizitionManager、LocalContextHoder中非线程安全的状态对象，采用ThreadLocal进行封装。让他们也成为线程安全的状态性对象。
