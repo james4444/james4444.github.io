@@ -1,0 +1,6 @@
+# 并发编程
+
+## netty
+
+netty 是一个高可用得网络框架，使用BIO模型，一般会为每个socket分配一个独立的线程，BIO模型适合socket连接不是很多的场景。java提供了非阻塞API,利用非阻塞API就能够实现一个线程处理多个连接了。具体得实现普遍采用Reactor模式。
+netty中最核心的概念就是事件循环，一个网络连接只会对应到一个java线程。netty还有一个核心概念是EventLoopGroup,处理TCP连接请求和读写请求是通过两个不同的socket完成的。在netty中，bossGroup是用来处理连接请求的，而workerGroup 是用来处理读写请求的。
